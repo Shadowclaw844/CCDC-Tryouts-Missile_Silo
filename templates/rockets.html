@@ -1,0 +1,47 @@
+{%- extends "layouts.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Our Rockets
+{% endblock %}
+
+
+
+{% block content %}
+<!-- Since we are using a loop, no need for [][] -->
+
+<!--
+{% for rocket in rockets %}
+<h1>Rocket No.: {{ rocket[0] }}</h1>
+<p>Launch Date: {{ rocket[1] }}</p>
+<p>Destination: {{ rocket[2] }}</p>
+<p>Extra Comments: {{ rocket[3] }}</p>
+<p>Active: {{ rocket[4] }}</p>
+{% endfor %}
+-->
+<div class="container mt-3">
+    <div class="row justify-content-between">
+        <div class="card-deck ">
+
+            {% for rocket in rockets %}
+                {% if rocket %}
+
+                    <div class="card mb-4" style="min-width: 18rem; max-width: 18rem;">
+                        <img class="card-img-top" src="{{ url_for('static', filename=rocket[2] + '.png') }}" alt="{{ rocket[2] }}">
+                        <div class="card-body">
+                            <h5 class="card-title">Missile No.: {{ rocket[0] }} </h5>
+                            <p class="card-text">Launch Date: {{ rocket[1] }}</p>
+                            <p class="card-text">Destination: {{ rocket[2] }}</p>
+                            <p class="card-text">Extra Comments: {{ rocket[3] }}</p>
+                            <p class="card-text">Active: {{ rocket[4] }}</p>
+                        </div> 
+
+                </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

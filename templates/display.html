@@ -1,0 +1,32 @@
+{%- extends "bootstrap/base.html" %}
+
+{% include 'navbar.html' %}
+
+{% block content %}
+    <h1>
+        {% block title %} 
+        Rockets 
+        {% endblock %}
+    </h1>
+    {% for rocket in rockets %}
+        <div class='rocket'>
+            <h3>
+                <!-- The brackets indicate what element you are taking from the table -->
+                No. {{ rocket[0] }}  Time: {{ rocket[1] }} Comments: {{ rocket[2] }}
+            </h3>
+            <i>
+                <p>
+                    ({{ rocket[3] }} pages)
+                </p>
+            </i>
+            <p class='review'>
+                {{ rocket[4] }}
+            </p>
+            <i>
+                <p>
+                    Added {{ rocket[5] }}
+                </p>
+            </i>
+        </div>
+    {% endfor %}
+{% endblock %}

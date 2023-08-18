@@ -1,0 +1,39 @@
+{%- extends "layouts.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Active Laucnhpad
+{% endblock %}
+
+<body>
+
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}    
+
+{% block content %}
+<br>
+<div class="container">
+    <div class="jumbotron">
+        <h1>Send missiles to fun locations</h1>
+        <p>Note: Missiles take 60 seconds to impact. If this page refreshes, you are probably good</p>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+        <form method="POST" action="/addrocket">
+            <d1>
+                {{ form.csrf_token }}
+                {{ wtf.form_field(form.destination) }} 
+                {{ wtf.form_field(form.comments) }}
+            <input class="btn btn-danger" type="submit" value="Fire!">
+            </d1>
+        </form>
+   </div>
+</div>
+{% endblock %}
+</body>

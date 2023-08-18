@@ -1,0 +1,27 @@
+{%- extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block title %}
+Forums
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="jumbotron">
+        <h1>Signup for our awesome service</h1>
+        <p>Note: Your data isn't going anywhere.</p>
+    </div>
+    <div class="col-md-12">
+        <form method="POST" action="/forumtest">
+            <d1>
+                {{ form.csrf_token }}
+                {{ wtf.form_field(form.username) }}
+                {{ wtf.form_field(form.password) }}
+            <input class="btn btn-primary" type="submit" value="login">
+            </d1>
+        </form>
+   </div>
+</div>
+
+{%- endblock %}
