@@ -59,13 +59,13 @@ def order66(target):
 
     if target == 'win10':
         print('Goodbye Windows 10')
-        # Put the venvs in the worker user
-        command = '/home/worker/venvs/impacket/bin/wmiexec.py {}:{}@{} "whoami"'.format(win10.username,win10.password,win10.host)
+        # Put the venvs in the root user
+        command = '/home/root/venvs/impacket/bin/wmiexec.py {}:{}@{} "whoami"'.format(win10.username,win10.password,win10.host)
         os.system(command)
 
     if target == 'win2016':
         print('Goodbye Windows Server 2016')
-        command = '/home/worker/venvs/impacket/bin/wmiexec.py {}:{}@{} "whoami"'.format(win2016.username,win2016.password,win2016.host)
+        command = '/home/root/venvs/impacket/bin/wmiexec.py {}:{}@{} "whoami"'.format(win2016.username,win2016.password,win2016.host)
         os.system(command)
 
 

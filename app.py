@@ -32,41 +32,9 @@ def home():
 def launch():
     return render_template('launch.html')
 
-@app.route('/forumtest/', methods=['GET', 'POST'])
-def forumtest():
-    form = LoginForm()
-    if form.validate_on_submit():
-        return 'wow. Thank you {}'.format(form.username.data)
-
-
-    return render_template('forum.html', form=form)
-
-@app.route('/display/', methods=['GET'])
-def display():
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute('SELECT * FROM rockets')
-    rockets = cur.fetchall()
-    cur.close()
-    conn.close()
-    return render_template('display.html', rockets=rockets)
-
-@app.route('/api/', methods=['POST'])
-def api():
-    #Instead of a POST request, we could do a GET request with specific queries. It would make it a lot easier
-    if request.method == 'POST':
-        command = request.form.get('command')
-        conn = get_db_connection()
-        cur = conn.cursor()
-        #Failing below. Attempting to execute blank queries???
-        cur.execute(command)
-        result = cur.fetchall()
-        cur.close()
-        conn.close()
-        return result
     
-@app.route('/api2/', methods=['GET'])
-def api2():
+@app.route('/api/', methods=['GET'])
+def api():
     #Instead of a POST request, we could do a GET request with specific queries. It would make it a lot easier
     if request.method == 'GET':
         command = request.args.get('command')
@@ -108,7 +76,7 @@ def search():
 
         #Need error handling when ID doesn't exist
         query = {'command':'SELECT * FROM rockets WHERE ID = {}'.format(form.query.data),'type':'SELECT'}
-        res = make_request.get('http://localhost:5000/api2', params=query)
+        res = make_request.get('http://localhost:5000/api', params=query)
 
         #I have no idea what converting to json does, but it will break if its not here
         output = res.json()
@@ -134,7 +102,7 @@ def addrocket():
     if form.validate_on_submit():
         current_time = datetime.now()
         query = {'command':'INSERT INTO rockets(launch_time,destination,comments,active) VALUES(\'{}\',\'{}\',\'{}\',true)'.format(current_time,form.destination.data,form.comments.data),'type':'INSERT'}
-        res = make_request.get('http://localhost:5000/api2', params=query)
+        res = make_request.get('http://localhost:5000/api', params=query)
         #Probably good to do some confirmation stuff but not needed for functionality
         # I give up on flash 
         #flash('Fired missile', 'info')
@@ -146,8 +114,8 @@ def addrocket():
 @app.route('/rockets', methods=['GET'])
 def rockets():
         query = {'command':'SELECT * FROM rockets','type':'SELECT'}
-        res = make_request.get('http://localhost:5000/api2', params=query)
+        res = make_request.get('http://localhost:5000/api', params=query)
         output = res.json()
         return render_template('rockets.html', rockets=output)
 # Could do something like for rocket in rockets in the html page if I wanted to do something that showed all rockets
-# Need to test and see if the api2 endpoint gives [[],[]] (Multiple tuples) if we do a SELECT * FROM rockets or something of the sort
+# Need to test and see if the api endpoint gives [[],[]] (Multiple tuples) if we do a SELECT * FROM rockets or something of the sort
