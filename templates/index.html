@@ -4,3 +4,38 @@
 Welcome to the silo!
 {% endblock %}
 
+{% block content %}
+<main role="main">
+
+  <div class="jumbotron jumbotron-fluid" style="background-image: url(/static/nebula_image.jpg); background-size: 100%;">
+    <div class="container py-5">
+      <h1 class="display-3 text-white">Welcome to Nebula's Missile Silo</h1>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h2>Launch a Missile</h2>
+        <p>Launch a missile to the location of your choice. For some reason, the current targets are our own devices.</p>
+        <p><a class="btn btn-secondary" href="/addmissile" role="button">View &raquo;</a></p>
+      </div>
+      <div class="col-md-4">
+        <h2>Search for Missiles by ID</h2>
+        <p>Want to search for a missile by ID? Now you can!  </p>
+        <p><a class="btn btn-secondary" href="/search" role="button">View &raquo;</a></p>
+      </div>
+      <div class="col-md-4">
+        <h2>Display all missiles</h2>
+        <p>Not sure what ID your missile is? Want to see more than one missile at once? Display all missiles in the database</p>
+        <p><a class="btn btn-secondary" href="/missiles" role="button">View &raquo;</a></p>
+      </div>
+    </div>
+
+    <hr>
+
+  </div>
+
+</main>
+
+{% endblock %}

@@ -28,10 +28,6 @@ def get_db_connection():
 def home():
     return render_template('index.html')
 
-@app.route('/launch', methods=['GET', 'POST'])
-def launch():
-    return render_template('launch.html')
-
     
 @app.route('/api/', methods=['GET'])
 def api():
@@ -95,8 +91,8 @@ def search():
     #It's rendering the result text, but its not updating it with the above thing        
     return render_template('search.html', form=form, result=result )
 
-@app.route('/addrocket', methods=['GET', 'POST'])
-def addrocket():
+@app.route('/addmissile', methods=['GET', 'POST'])
+def addmissile():
     
     form = AddRocket()
     if form.validate_on_submit():
@@ -107,15 +103,15 @@ def addrocket():
         # I give up on flash 
         #flash('Fired missile', 'info')
         return redirect(request.path)
-    return render_template('addrocket.html', form=form)
+    return render_template('addmissile.html', form=form)
     
 
         
-@app.route('/rockets', methods=['GET'])
-def rockets():
+@app.route('/missiles', methods=['GET'])
+def missiles():
         query = {'command':'SELECT * FROM rockets','type':'SELECT'}
         res = make_request.get('http://localhost:5000/api', params=query)
         output = res.json()
-        return render_template('rockets.html', rockets=output)
+        return render_template('missiles.html', rockets=output)
 # Could do something like for rocket in rockets in the html page if I wanted to do something that showed all rockets
 # Need to test and see if the api endpoint gives [[],[]] (Multiple tuples) if we do a SELECT * FROM rockets or something of the sort

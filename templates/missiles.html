@@ -27,7 +27,7 @@ Our Rockets
                 {% if rocket %}
 
                     <div class="card mb-4" style="min-width: 18rem; max-width: 18rem;">
-                        <img class="card-img-top" src="{{ url_for('static', filename=rocket[2] + '.png') }}" alt="{{ rocket[2] }}">
+                        <img class="card-img-top" src="{{ url_for('static', filename='targets/' + rocket[2] + '.png') }}" alt="{{ rocket[2] }}">
                         <div class="card-body">
                             <h5 class="card-title">Missile No.: {{ rocket[0] }} </h5>
                             <p class="card-text">Launch Date: {{ rocket[1] }}</p>
