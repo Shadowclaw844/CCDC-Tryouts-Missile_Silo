@@ -32,7 +32,7 @@ def order66(target):
     # Windows
     win10 = hostinfo('','NEBULA/administrator','NebulaNumber1!')
     
-    win2016 = hostinfo('','administraotr','NebulaNumber1!')
+    win2016 = hostinfo('','NEBULA/administrator','NebulaNumber1!')
 
 
 
