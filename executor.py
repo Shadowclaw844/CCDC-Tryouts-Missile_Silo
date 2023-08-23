@@ -17,22 +17,22 @@ def get_db_connection():
     conn = psycopg2.connect(host='localhost',
                             database='missile_silo',
                             user='silo_admin',
-                            password='nebula')
+                            password='NebulaNumber1!')
     return conn
 
 def order66(target):
     # Host information
     # Linux
     #debian = hostinfo('127.0.0.1', 'adminuser', 'admin')
-    debian_root = hostinfo('127.0.0.1','root', 'nebula')
+    debian_root = hostinfo('127.0.0.1','root', 'NebulaNumber1!')
 
     #centos = hostinfo('','nebula','nebula')
-    centos_root = hostinfo('192.168.1.120','root','nebula')
+    centos_root = hostinfo('192.168.1.120','root','NebulaNumber1!')
     
     # Windows
-    win10 = hostinfo('','administrator','nebula')
+    win10 = hostinfo('','NEBULA/administrator','NebulaNumber1!')
     
-    win2016 = hostinfo('','administraotr','nebula')
+    win2016 = hostinfo('','administraotr','NebulaNumber1!')
 
 
 
@@ -60,12 +60,12 @@ def order66(target):
     if target == 'win10':
         print('Goodbye Windows 10')
         # Put the venvs in the root user
-        command = '/home/root/venvs/impacket/bin/wmiexec.py {}:{}@{} "whoami"'.format(win10.username,win10.password,win10.host)
+        command = '/root/venvs/impacket/bin/wmiexec.py {}:{}@{} "whoami"'.format(win10.username,win10.password,win10.host)
         os.system(command)
 
     if target == 'win2016':
         print('Goodbye Windows Server 2016')
-        command = '/home/root/venvs/impacket/bin/wmiexec.py {}:{}@{} "whoami"'.format(win2016.username,win2016.password,win2016.host)
+        command = '/root/venvs/impacket/bin/wmiexec.py {}:{}@{} "whoami"'.format(win2016.username,win2016.password,win2016.host)
         os.system(command)
 
 
